@@ -4,7 +4,8 @@ var sprintTime = 2;
 var breakTime = 1;
 var sprintAmount = 3;
 var sprintCounter = 0;
-var nextMode = 0; // 0-not started 1-sprint 2-break 3-rate
+var nextMode = 0;
+var rating = [];
 
 function pretty_time_string(num) {
     return ( num < 10 ? "0" : "" ) + num;
@@ -62,7 +63,9 @@ function changeMode(){
     }
     // break
     else if(nextMode == 3){
-        nextMode = 1
+        var ratingValue = document.getElementById("ratingRange").value;
+        rating[sprintCounter-1] = ratingValue;
+        nextMode = 1;
         $('#operatingTimerButton').text("Sprint");
         clearInterval(intervalID)
         $('#ratingDiv').hide();
@@ -71,12 +74,14 @@ function changeMode(){
     }
     // finish
     else if(nextMode == 4){
+        var ratingValue = document.getElementById("ratingRange").value;
+        rating[sprintCounter-1] = ratingValue;
         clearInterval(intervalID)
         $('#timerDiv').hide();
         $('#ratingDiv').hide();
-        $('#timerTitle').text("Finito!");
         $('#operatingTimerButton').hide();
-    }
+        $('#timerTitle').text("Finito!");
+        alert(rating);
 }
 
 $("#operatingTimerButton").click(changeMode);
