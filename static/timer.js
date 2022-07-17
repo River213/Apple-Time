@@ -82,6 +82,7 @@ function changeMode(){
         $('#operatingTimerButton').hide();
         $('#timerTitle').text("Finito!");
         alert(rating);
+    }
 }
 
 $("#operatingTimerButton").click(changeMode);
